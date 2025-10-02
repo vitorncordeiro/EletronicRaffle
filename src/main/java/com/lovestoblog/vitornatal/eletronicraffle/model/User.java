@@ -11,5 +11,19 @@ public class User {
     private String cpf;
     private String email;
 
+    public User(){}
 
+    public User(String name, String cpf, String email) {
+        this.name = name;
+        this.cpf = cpf;
+        this.email = email;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
 }
