@@ -8,6 +8,7 @@ public class EletronicRaffleApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(EletronicRaffleApplication.class, args);
+
     }
 
 }
