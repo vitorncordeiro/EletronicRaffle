@@ -5,27 +5,26 @@ import jakarta.persistence.*;
 import java.util.Set;
 
 @Entity
-@Table(name = "tb_users")
-public class UserModel {
+public class AdminModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long USER_ID;
+    private long ADM_ID;
     private String name;
+    private int activiesQtt;
     private String cpf;
-    private String email;
-    @OneToMany(mappedBy = "user")
-    private Set<RaffleTicketModel> tickets;
 
-    public UserModel(){}
+    @OneToMany(mappedBy = "adm")
+    private Set<RaffleModel> raffleModels;
 
-    public UserModel(String name, String cpf, String email) {
+    public AdminModel(){}
+
+    public AdminModel(String name, String cpf) {
         this.name = name;
         this.cpf = cpf;
-        this.email = email;
     }
 
-    public Long getId() {
-        return USER_ID;
+    public Long getADM_ID() {
+        return ADM_ID;
     }
 
     public String getCpf() {
