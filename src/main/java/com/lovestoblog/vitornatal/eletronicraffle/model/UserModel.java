@@ -18,8 +18,10 @@ public class UserModel {
     private Long USER_ID;
     private String name;
 
+    @Column(unique = true)
     private String cpf;
 
+    @Column(unique = true)
     private String email;
 
     @OneToMany(mappedBy = "user")

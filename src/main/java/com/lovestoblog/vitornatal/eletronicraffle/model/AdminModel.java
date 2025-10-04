@@ -20,6 +20,7 @@ public class AdminModel {
 
     private int activiesQtt;
 
+    @Column(unique = true)
     private String cpf;
 
     @OneToMany(mappedBy = "adm")
