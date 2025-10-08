@@ -21,7 +21,7 @@ public class RaffleModel {
 
     private String prize;
 
-    @OneToMany(mappedBy = "raffle")
+    @OneToMany(mappedBy = "raffleModel")
     private Set<RaffleTicketModel> tickets;
 
     @ManyToOne
