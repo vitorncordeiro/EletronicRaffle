@@ -4,7 +4,7 @@ import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -18,7 +18,9 @@ public class UserService {
         this.raffleTicketService = raffleTicketService;
     }
 
-    public List<UserModel> getUsers(){
-        return userRepository.findAll();
+    public UserModel getUser(Long id){
+        Optional<UserModel> userByID = userRepository.findById(id);
+        return userByID.orElse(null);
     }
+
 }
