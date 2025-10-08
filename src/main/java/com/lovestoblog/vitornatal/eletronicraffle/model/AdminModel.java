@@ -1,5 +1,6 @@
 package com.lovestoblog.vitornatal.eletronicraffle.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,6 +25,7 @@ public class AdminModel {
     private String cpf;
 
     @OneToMany(mappedBy = "adm")
+    @JsonIgnore
     private Set<RaffleModel> raffleModels;
 
 }

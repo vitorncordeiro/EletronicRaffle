@@ -1,5 +1,6 @@
 package com.lovestoblog.vitornatal.eletronicraffle.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -24,5 +25,6 @@ public class UserModel {
     private String email;
 
     @OneToMany(mappedBy = "user")
+    @JsonIgnore
     private Set<RaffleTicketModel> tickets;
 }
