@@ -1,9 +1,8 @@
 package com.lovestoblog.vitornatal.eletronicraffle.controller;
 
-import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleTicketModel;
+import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,8 +18,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{id}/tickets")
-    public List<RaffleTicketModel> getUserTickets(@PathVariable Long id){
-        return userService.getUserTickets(id);
+    @GetMapping("/tickets")
+    public List<UserModel> getUsers(){
+        return userService.getUsers();
     }
+
 }
