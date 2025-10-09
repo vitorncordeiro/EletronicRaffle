@@ -23,4 +23,7 @@ public class AdminService {
         raffleService.deleteRaffle(id);
     }
 
+    public RaffleModel editRaffle(Long id, RaffleModel raffle){
+        return raffleService.editRaffle(id, raffle);
+    }
 }

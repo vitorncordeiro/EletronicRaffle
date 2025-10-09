@@ -14,4 +14,11 @@ public class RaffleService {
         raffleRepository.deleteById(id);
     }
 
+    public RaffleModel editRaffle(Long id, RaffleModel raffle){
+        if(raffleRepository.existsById(id)){
+            raffleRepository.save(raffle);
+        }
+        return null;
+
+    }
 }
