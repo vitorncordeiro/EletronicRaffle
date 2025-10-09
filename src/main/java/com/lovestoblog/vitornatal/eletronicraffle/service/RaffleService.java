@@ -10,4 +10,8 @@ public class RaffleService {
     public RaffleModel createRaffle(RaffleModel raffleModel){
         return raffleRepository.save(raffleModel);
     }
+    public void deleteRaffle(Long id){
+        raffleRepository.deleteById(id);
+    }
+
 }

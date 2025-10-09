@@ -16,7 +16,11 @@ public class AdminService {
     }
 
     public RaffleModel createRaffle(RaffleModel raffleModel){
-
         return raffleService.createRaffle(raffleModel);
     }
+
+    public void deleteRaffle(Long id){
+        raffleService.deleteRaffle(id);
+    }
+
 }
