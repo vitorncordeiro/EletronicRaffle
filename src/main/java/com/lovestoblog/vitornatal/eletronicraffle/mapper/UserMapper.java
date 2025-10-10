@@ -2,7 +2,9 @@ package com.lovestoblog.vitornatal.eletronicraffle.mapper;
 
 import com.lovestoblog.vitornatal.eletronicraffle.dto.UserDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
+import org.springframework.stereotype.Component;
 
+@Component
 public class UserMapper {
     public UserModel map(UserDTO userDTO){
         UserModel userModel = new UserModel();
