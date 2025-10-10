@@ -1,6 +1,6 @@
 package com.lovestoblog.vitornatal.eletronicraffle.controller;
 
-import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.UserDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.service.UserService;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,7 +18,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}/tickets")
-    public UserModel getUser(@PathVariable Long id){
+    public UserDTO getUser(@PathVariable Long id){
         return userService.getUser(id);
     }
 
