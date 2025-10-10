@@ -19,7 +19,7 @@ public class AdminController {
         adminService.deleteRaffle(id);
     }
     @PutMapping("/editRaffle/{id}")
-    public RaffleModel editRaffle(@PathVariable Long id, RaffleModel raffle){
+    public RaffleModel editRaffle(@PathVariable Long id, @RequestBody RaffleModel raffle){
         return adminService.editRaffle(id, raffle);
     }
 }
