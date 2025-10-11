@@ -1,12 +1,11 @@
 package com.lovestoblog.vitornatal.eletronicraffle.service;
 
-import com.lovestoblog.vitornatal.eletronicraffle.dto.UserDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.mapper.UserMapper;
-import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
+import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleTicketModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
+import java.util.Set;
 
 @Service
 public class UserService {
@@ -22,10 +21,9 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public UserDTO getUser(Long id){
-        Optional<UserModel> userByID = userRepository.findById(id);
-        var user = userMapper.map(userByID.orElse(null));
-        return user;
+    public Set<RaffleTicketModel> getUserTickets(Long id){
+        return raffleTicketService.getUserTickets(id);
+
     }
 
 }
