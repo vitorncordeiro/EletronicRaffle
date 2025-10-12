@@ -4,7 +4,7 @@ import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleTicketModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.RaffleTicketRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class RaffleTicketService {
@@ -14,7 +14,7 @@ public class RaffleTicketService {
         this.raffleTicketRepository = raffleTicketRepository;
     }
 
-    public Set<RaffleTicketModel> getUserTickets(Long id){
-        return raffleTicketRepository.findByUserId(id);
+    public List<RaffleTicketModel> getUserTickets(Long id){
+        return raffleTicketRepository.findByUser_Id(id);
     }
 }

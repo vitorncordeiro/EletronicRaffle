@@ -5,7 +5,7 @@ import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleTicketModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.Set;
+import java.util.List;
 
 @Service
 public class UserService {
@@ -21,7 +21,7 @@ public class UserService {
         this.userMapper = userMapper;
     }
 
-    public Set<RaffleTicketModel> getUserTickets(Long id){
+    public List<RaffleTicketModel> getUserTickets(Long id){
         return raffleTicketService.getUserTickets(id);
 
     }

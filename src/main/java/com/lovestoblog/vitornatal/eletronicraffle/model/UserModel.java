@@ -15,7 +15,7 @@ import java.util.Set;
 public class UserModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long USER_ID;
+    private Long id;
     private String name;
 
     @Column(unique = true)

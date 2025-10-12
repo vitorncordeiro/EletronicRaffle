@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class UserMapper {
     public UserModel map(UserDTO userDTO){
         UserModel userModel = new UserModel();
-        userModel.setUSER_ID(userDTO.getUSER_ID());
+        userModel.setId(userDTO.getUSER_ID());
         userModel.setName(userDTO.getName());
         userModel.setCpf(userDTO.getCpf());
         userModel.setEmail(userDTO.getEmail());
@@ -16,7 +16,7 @@ public class UserMapper {
     }
     public UserDTO map(UserModel userModel){
         UserDTO userDTO = new UserDTO();
-        userDTO.setUSER_ID(userModel.getUSER_ID());
+        userDTO.setUSER_ID(userModel.getId());
         userDTO.setName(userModel.getName());
         userDTO.setCpf(userModel.getCpf());
         userDTO.setEmail(userModel.getEmail());
