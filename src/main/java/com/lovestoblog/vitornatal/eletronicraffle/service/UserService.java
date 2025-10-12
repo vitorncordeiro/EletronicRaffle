@@ -28,7 +28,7 @@ public class UserService {
     public List<RaffleTicketDTO> getUserTickets(Long id){
         var result = raffleTicketService.getUserTickets(id);
         return result.stream()
-                .map(ticket -> raffleTicketMapper.map(ticket, ticket.getRaffleModel()))
+                .map(ticket -> raffleTicketMapper.map(ticket))
                 .toList();
 
     }
