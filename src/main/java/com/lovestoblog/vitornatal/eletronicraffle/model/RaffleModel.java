@@ -17,15 +17,11 @@ public class RaffleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long RAFFLE_ID;
-
     private LocalDate date;
-
     private String prize;
-
     @OneToMany(mappedBy = "raffleModel")
     @JsonIgnore
     private Set<RaffleTicketModel> tickets;
-
     @ManyToOne
     @JoinColumn(name = "adm_id")
     private AdminModel adm;
