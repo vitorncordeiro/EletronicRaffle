@@ -1,9 +1,12 @@
 package com.lovestoblog.vitornatal.eletronicraffle.service;
 
 import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RaffleTicketRequestDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.request.UserUpdateDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleTicketResponseDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.response.UserResponseDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.mapper.RaffleTicketMapper;
 import com.lovestoblog.vitornatal.eletronicraffle.mapper.UserMapper;
+import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import lombok.Data;
 import org.springframework.stereotype.Service;
@@ -28,6 +31,17 @@ public class UserService {
     }
     public RaffleTicketResponseDTO createTicket(RaffleTicketRequestDTO ticketDTO){
         return raffleTicketService.createTicket(ticketDTO);
+    }
+    public UserResponseDTO updateUser(Long id, UserUpdateDTO userUpdateDTO){
+        UserModel userModel = userRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found"));
+        if(userUpdateDTO.getName() != null){
+            userModel.setName(userUpdateDTO.getName());
+        }
+        if(userUpdateDTO.getEmail() != null){
+            userModel.setEmail(userUpdateDTO.getEmail());
+        }
+        userRepository.save(userModel);
+        return userMapper.map(userModel);
     }
 
 }
