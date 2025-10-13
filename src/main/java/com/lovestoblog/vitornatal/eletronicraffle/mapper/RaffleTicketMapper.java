@@ -1,7 +1,7 @@
 package com.lovestoblog.vitornatal.eletronicraffle.mapper;
 
-import com.lovestoblog.vitornatal.eletronicraffle.dto.RaffleDTO;
-import com.lovestoblog.vitornatal.eletronicraffle.dto.RaffleTicketDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleResponseDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleTicketResponseDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleTicketModel;
 import org.springframework.stereotype.Component;
 
@@ -10,16 +10,18 @@ public class RaffleTicketMapper {
 
 
 
-    public RaffleTicketDTO map(RaffleTicketModel raffleTicketModel){
+    public RaffleTicketResponseDTO map(RaffleTicketModel raffleTicketModel){
         var raffleModel = raffleTicketModel.getRaffleModel();
-        RaffleTicketDTO raffleTicketDTO = new RaffleTicketDTO();
+        RaffleTicketResponseDTO raffleTicketDTO = new RaffleTicketResponseDTO();
         raffleTicketDTO.setRAFFLETICKET_ID(raffleTicketModel.getRAFFLETICKET_ID());
         raffleTicketDTO.setUser(raffleTicketModel.getUser());
-        raffleTicketDTO.setRaffleDTO(new RaffleDTO(
+        raffleTicketDTO.setRaffleDTO(new RaffleResponseDTO(
                 raffleModel.getRAFFLE_ID(),
                 raffleModel.getDate(),
                 raffleModel.getPrize()
         ));
         return raffleTicketDTO;
     }
+
+
 }

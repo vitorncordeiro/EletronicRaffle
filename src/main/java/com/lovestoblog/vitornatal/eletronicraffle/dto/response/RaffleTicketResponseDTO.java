@@ -1,4 +1,4 @@
-package com.lovestoblog.vitornatal.eletronicraffle.dto;
+package com.lovestoblog.vitornatal.eletronicraffle.dto.response;
 
 import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import lombok.AllArgsConstructor;
@@ -8,8 +8,8 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class RaffleTicketDTO {
+public class RaffleTicketResponseDTO {
     private long RAFFLETICKET_ID;
-    private RaffleDTO raffleDTO;
+    private RaffleResponseDTO raffleDTO;
     private UserModel user;
 }

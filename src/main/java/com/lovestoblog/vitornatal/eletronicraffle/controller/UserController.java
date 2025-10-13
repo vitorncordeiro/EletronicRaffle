@@ -1,11 +1,9 @@
 package com.lovestoblog.vitornatal.eletronicraffle.controller;
 
-import com.lovestoblog.vitornatal.eletronicraffle.dto.RaffleTicketDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RaffleTicketRequestDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleTicketResponseDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.service.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,8 +18,12 @@ public class UserController {
     }
 
     @GetMapping("/{id}/tickets")
-    public List<RaffleTicketDTO> getUser(@PathVariable Long id){
+    public List<RaffleTicketResponseDTO> getUser(@PathVariable Long id){
         return userService.getUserTickets(id);
     }
-
+    @PostMapping("/{id}/create-ticket")
+    public RaffleTicketResponseDTO createTicket(@RequestBody RaffleTicketRequestDTO ticketDTO){
+        RaffleTicketResponseDTO response = userService.createTicket(ticketDTO);
+        return response;
+    }
 }
