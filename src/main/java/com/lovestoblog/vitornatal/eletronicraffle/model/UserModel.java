@@ -37,12 +37,22 @@ public class UserModel implements UserDetails {
     @JsonIgnore
     private Set<RaffleTicketModel> tickets;
 
+    public UserModel(String email, String password, String name, String cpf , UserRole userRole){
+        this.email = email;
+        this.password =password;
+        this.cpf =cpf;
+        this.role = userRole;
+        this.name= name;
+    }
+
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         if(this.role == UserRole.ADMIN) return List.of(new SimpleGrantedAuthority("ROLE_ADMIN"), new SimpleGrantedAuthority("ROLE_USER"));
         else return List.of(new SimpleGrantedAuthority("ROLE_USER"));
 
     }
+
+
 
     @Override
     public String getUsername() {
