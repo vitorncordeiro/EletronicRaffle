@@ -34,10 +34,10 @@ public class AuthenticationController {
 
     @PostMapping ("/register")
     public ResponseEntity register(@RequestBody RegisterDTO data){
-        if(userRepository.findByEmail(data.emaill()) != null) return ResponseEntity.badRequest().build();
+        if(userRepository.findByEmail(data.email()) != null) return ResponseEntity.badRequest().build();
 
         String encryptedPassword = new BCryptPasswordEncoder().encode(data.password());
-        UserModel user = new UserModel(data.emaill(), encryptedPassword,data.name(),  data.cpf(), data.role());
+        UserModel user = new UserModel(data.email(), encryptedPassword,data.name(),  data.cpf(), data.role());
 
         userRepository.save(user);
 
