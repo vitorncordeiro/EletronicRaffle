@@ -2,6 +2,8 @@ package com.lovestoblog.vitornatal.eletronicraffle.controller;
 
 import com.lovestoblog.vitornatal.eletronicraffle.dto.request.AuthenticationDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RegisterDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.response.LoginResponseDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.infra.security.TokenService;
 import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import jakarta.validation.Valid;
@@ -22,6 +24,9 @@ public class AuthenticationController {
     private AuthenticationManager authenticationManager;
 
     @Autowired
+    private TokenService tokenService;
+
+    @Autowired
     private UserRepository userRepository;
 
     @PostMapping("/login")
@@ -29,7 +34,9 @@ public class AuthenticationController {
         var userNP = new UsernamePasswordAuthenticationToken(data.getEmail(), data.getPassword());
         var auth = this.authenticationManager.authenticate(userNP);
 
-        return ResponseEntity.ok().build();
+        var token = tokenService.generateToken((UserModel) auth.getPrincipal());
+
+        return ResponseEntity.ok(new LoginResponseDTO(token));
     }
 
     @PostMapping ("/register")
