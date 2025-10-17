@@ -4,10 +4,12 @@ import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RaffleTicketReques
 import com.lovestoblog.vitornatal.eletronicraffle.dto.request.UserUpdateDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleTicketResponseDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.UserResponseDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.service.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 
 import java.util.List;
 
@@ -21,9 +23,9 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/{id}/tickets")
-    public List<RaffleTicketResponseDTO> getUser(@PathVariable Long id){
-        return userService.getUserTickets(id);
+    @GetMapping("/tickets")
+    public List<RaffleTicketResponseDTO> getUser(@AuthenticationPrincipal UserModel user){
+        return userService.getUserTickets(user.getId());
     }
     @PostMapping("/{id}/create-ticket")
     public ResponseEntity<String> createTicket(@RequestBody RaffleTicketRequestDTO ticketDTO){
@@ -35,6 +37,5 @@ public class UserController {
     public ResponseEntity<String> updateUser(@PathVariable Long id, @RequestBody UserUpdateDTO userUpdateDTO){
         UserResponseDTO user = userService.updateUser(id, userUpdateDTO);
         return ResponseEntity.ok(user.getName() + "'s profile updated");
-
     }
 }

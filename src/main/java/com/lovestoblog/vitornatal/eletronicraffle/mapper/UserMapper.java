@@ -1,5 +1,6 @@
 package com.lovestoblog.vitornatal.eletronicraffle.mapper;
 
+import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RegisterDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.UserResponseDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import org.springframework.stereotype.Component;
@@ -22,5 +23,14 @@ public class UserMapper {
         userDTO.setEmail(userModel.getEmail());
 
         return userDTO;
+    }
+    public UserModel map(RegisterDTO data){
+        UserModel userModel = new UserModel();
+        userModel.setPassword(data.password());
+        userModel.setRole(data.role());
+        userModel.setName(data.name());
+        userModel.setEmail(data.email());
+        userModel.setCpf(data.cpf());
+        return userModel;
     }
 }

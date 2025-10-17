@@ -9,6 +9,7 @@ import com.lovestoblog.vitornatal.eletronicraffle.mapper.UserMapper;
 import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import lombok.Data;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class UserService {
     private final RaffleTicketService raffleTicketService;
     private final UserMapper userMapper;
     private final RaffleTicketMapper raffleTicketMapper;
+    private final PasswordEncoder passwordEncoder;
 
     public List<RaffleTicketResponseDTO> getUserTickets(Long id){
         var result = raffleTicketService.getUserTickets(id);
@@ -42,6 +44,13 @@ public class UserService {
         }
         userRepository.save(userModel);
         return userMapper.map(userModel);
+    }
+    public UserModel save(UserModel userModel){
+        String password = userModel.getPassword();
+        userModel.setPassword(passwordEncoder.encode(password));
+
+        userRepository.save(userModel);
+        return userModel;
     }
 
 }

@@ -1,4 +1,4 @@
-package com.lovestoblog.vitornatal.eletronicraffle.service;
+package com.lovestoblog.vitornatal.eletronicraffle.infra.security;
 
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +14,6 @@ public class AuthorizationService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByEmail(username);
+        return userRepository.findByEmail(username).orElseThrow(() -> new UsernameNotFoundException("Invalid user or password"));
     }
 }
