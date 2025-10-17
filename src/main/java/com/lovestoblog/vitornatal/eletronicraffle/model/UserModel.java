@@ -29,6 +29,7 @@ public class UserModel implements UserDetails {
     @Column(unique = true)
     private String email;
 
+    @Enumerated(EnumType.STRING)
     private UserRole role;
 
     private String password;
@@ -56,26 +57,27 @@ public class UserModel implements UserDetails {
 
     @Override
     public String getUsername() {
-        return "";
+        return email;
     }
+
 
     @Override
     public boolean isAccountNonExpired() {
-        return UserDetails.super.isAccountNonExpired();
+        return true;
     }
 
     @Override
     public boolean isAccountNonLocked() {
-        return UserDetails.super.isAccountNonLocked();
+        return true;
     }
 
     @Override
     public boolean isCredentialsNonExpired() {
-        return UserDetails.super.isCredentialsNonExpired();
+        return true;
     }
 
     @Override
     public boolean isEnabled() {
-        return UserDetails.super.isEnabled();
+        return true;
     }
 }
