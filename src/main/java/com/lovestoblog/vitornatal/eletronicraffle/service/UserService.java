@@ -6,6 +6,7 @@ import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleTicketRespo
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.UserResponseDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.mapper.RaffleTicketMapper;
 import com.lovestoblog.vitornatal.eletronicraffle.mapper.UserMapper;
+import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleModel;
 import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import lombok.Data;
@@ -23,6 +24,7 @@ public class UserService {
     private final UserMapper userMapper;
     private final RaffleTicketMapper raffleTicketMapper;
     private final PasswordEncoder passwordEncoder;
+    private RaffleService raffleService;
 
     public List<RaffleTicketResponseDTO> getUserTickets(Long id){
         var result = raffleTicketService.getUserTickets(id);
@@ -51,6 +53,18 @@ public class UserService {
 
         userRepository.save(userModel);
         return userModel;
+    }
+
+    public RaffleModel createRaffle(RaffleModel raffleModel){
+        return raffleService.createRaffle(raffleModel);
+    }
+
+    public void deleteRaffle(Long id){
+        raffleService.deleteRaffle(id);
+    }
+
+    public RaffleModel editRaffle(Long id, RaffleModel raffle){
+        return raffleService.editRaffle(id, raffle);
     }
 
 }

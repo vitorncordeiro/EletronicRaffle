@@ -23,6 +23,6 @@ public class RaffleModel {
     @JsonIgnore
     private Set<RaffleTicketModel> tickets;
     @ManyToOne
-    @JoinColumn(name = "adm_id")
-    private AdminModel adm;
+    @JoinColumn(name = "user_id")
+    private UserModel user;
 }

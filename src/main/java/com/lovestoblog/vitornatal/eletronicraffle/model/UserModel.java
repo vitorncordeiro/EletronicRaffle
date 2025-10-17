@@ -38,6 +38,12 @@ public class UserModel implements UserDetails {
     @JsonIgnore
     private Set<RaffleTicketModel> tickets;
 
+
+    @OneToMany(mappedBy = "user")
+    @JsonIgnore
+    private Set<RaffleModel> raffleModels;
+
+
     public UserModel(String email, String password, String name, String cpf , UserRole userRole){
         this.email = email;
         this.password =password;
@@ -45,6 +51,8 @@ public class UserModel implements UserDetails {
         this.role = userRole;
         this.name= name;
     }
+
+
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

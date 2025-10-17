@@ -4,6 +4,7 @@ import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RaffleTicketReques
 import com.lovestoblog.vitornatal.eletronicraffle.dto.request.UserUpdateDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleTicketResponseDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.UserResponseDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleModel;
 import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.service.UserService;
 import org.springframework.http.HttpStatus;
@@ -38,4 +39,19 @@ public class UserController {
         UserResponseDTO user = userService.updateUser(id, userUpdateDTO);
         return ResponseEntity.ok(user.getName() + "'s profile updated");
     }
+
+    @PostMapping("/createRaffle")
+    public RaffleModel createRaffle(RaffleModel raffleModel){
+        return userService.createRaffle(raffleModel);
+    }
+
+    @DeleteMapping("/deleteRaffle/{id}")
+    public void deleteRaffle(@PathVariable Long id){
+        userService.deleteRaffle(id);
+    }
+    @PutMapping("/editRaffle/{id}")
+    public RaffleModel editRaffle(@PathVariable Long id, @RequestBody RaffleModel raffle){
+        return userService.editRaffle(id, raffle);
+    }
+
 }
