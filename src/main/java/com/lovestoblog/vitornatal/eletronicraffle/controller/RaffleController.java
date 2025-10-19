@@ -1,6 +1,7 @@
 package com.lovestoblog.vitornatal.eletronicraffle.controller;
 
 import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RaffleRequestDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleResponseDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleModel;
 import com.lovestoblog.vitornatal.eletronicraffle.service.RaffleService;
 import org.springframework.web.bind.annotation.*;
@@ -16,13 +17,13 @@ public class RaffleController {
     }
 
     @PostMapping("/createRaffle")
-    public RaffleModel createRaffle(@RequestBody RaffleRequestDTO raffleRequestDTO){
+    public RaffleResponseDTO createRaffle(@RequestBody RaffleRequestDTO raffleRequestDTO){
         return raffleService.createRaffle(raffleRequestDTO);
     }
 
     @DeleteMapping("/deleteRaffle/{id}")
-    public void deleteRaffle(@PathVariable Long id){
-        raffleService.deleteRaffle(id);
+    public void deleteRaffle(@PathVariable Long raffleId){
+        raffleService.deleteRaffle(raffleId);
     }
     @PutMapping("/editRaffle/{id}")
     public RaffleModel editRaffle(@PathVariable Long id, @RequestBody RaffleModel raffle){
