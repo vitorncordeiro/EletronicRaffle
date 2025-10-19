@@ -28,8 +28,13 @@ public class RaffleTicketService {
         this.userRepository = userRepository;
     }
 
-    public List<RaffleTicketModel> getUserTickets(Long id){
-        return raffleTicketRepository.findByUser_Id(id);
+    public List<RaffleTicketResponseDTO> getUserTickets(Long id){
+
+        var result = raffleTicketRepository.findByUser_Id(id);
+        return result.stream()
+                .map(ticket -> raffleTicketMapper.map(ticket))
+                .toList();
+
     }
     public RaffleTicketResponseDTO createTicket(RaffleTicketRequestDTO ticketRequestDTO){
         var raffle = raffleRepository.findById(ticketRequestDTO.getRaffleId())
@@ -42,4 +47,8 @@ public class RaffleTicketService {
         var model = raffleTicketRepository.save(ticket);
         return raffleTicketMapper.map(model);
     }
+
+
+
+
 }
