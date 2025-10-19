@@ -9,5 +9,4 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class RaffleTicketRequestDTO {
     private Long raffleId;
-    private Long userId;
 }

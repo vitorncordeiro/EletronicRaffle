@@ -25,7 +25,7 @@ public class RaffleTicketController {
     public List<RaffleTicketResponseDTO> getTickets(@AuthenticationPrincipal UserModel user){
         return raffleTicketService.getUserTickets(user.getId());
     }
-    @PostMapping("/{id}/create-ticket")
+    @PostMapping("/create-ticket")
     public ResponseEntity<String> createTicket(@RequestBody RaffleTicketRequestDTO ticketDTO){
         RaffleTicketResponseDTO response = raffleTicketService.createTicket(ticketDTO);
         return ResponseEntity.status(HttpStatus.CREATED)

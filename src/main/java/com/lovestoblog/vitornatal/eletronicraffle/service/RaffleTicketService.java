@@ -2,11 +2,13 @@ package com.lovestoblog.vitornatal.eletronicraffle.service;
 
 import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RaffleTicketRequestDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleTicketResponseDTO;
+import com.lovestoblog.vitornatal.eletronicraffle.infra.security.JWTUserData;
 import com.lovestoblog.vitornatal.eletronicraffle.mapper.RaffleTicketMapper;
 import com.lovestoblog.vitornatal.eletronicraffle.model.RaffleTicketModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.RaffleRepository;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.RaffleTicketRepository;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -37,10 +39,11 @@ public class RaffleTicketService {
 
     }
     public RaffleTicketResponseDTO createTicket(RaffleTicketRequestDTO ticketRequestDTO){
+        JWTUserData principal = (JWTUserData) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var user = userRepository.findById(principal.userId()).orElseThrow(() -> new RuntimeException("User dont found"));
         var raffle = raffleRepository.findById(ticketRequestDTO.getRaffleId())
                 .orElseThrow(() -> new RuntimeException("Raffle not found"));
-        var user = userRepository.findById(ticketRequestDTO.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+
         var ticket = new RaffleTicketModel();
         ticket.setRaffleModel(raffle);
         ticket.setUser(user);
