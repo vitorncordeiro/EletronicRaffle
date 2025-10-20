@@ -7,4 +7,5 @@ import java.util.List;
 
 public interface RaffleTicketRepository extends JpaRepository<RaffleTicketModel, Long> {
     List<RaffleTicketModel> findByUser_Id(Long userId);
+    List<RaffleTicketModel> findByRaffleModel_raffleId(Long raffleId);
 }

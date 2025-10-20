@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component;
 public class RaffleMapper {
     public RaffleResponseDTO map(RaffleModel raffleModel){
         RaffleResponseDTO raffleDTO = new RaffleResponseDTO();
-        raffleDTO.setRAFFLE_ID(raffleModel.getRAFFLE_ID());
+        raffleDTO.setRAFFLE_ID(raffleModel.getRaffleId());
         raffleDTO.setDate(raffleModel.getDate());
         raffleDTO.setPrize(raffleModel.getPrize());
         return raffleDTO;

@@ -16,7 +16,7 @@ import java.util.Set;
 public class RaffleModel {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long RAFFLE_ID;
+    private long raffleId;
     private LocalDate date;
     private String prize;
     @OneToMany(mappedBy = "raffleModel")

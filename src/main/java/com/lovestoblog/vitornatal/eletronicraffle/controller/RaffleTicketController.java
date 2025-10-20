@@ -2,11 +2,9 @@ package com.lovestoblog.vitornatal.eletronicraffle.controller;
 
 import com.lovestoblog.vitornatal.eletronicraffle.dto.request.RaffleTicketRequestDTO;
 import com.lovestoblog.vitornatal.eletronicraffle.dto.response.RaffleTicketResponseDTO;
-import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.service.RaffleTicketService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,9 +20,10 @@ public class RaffleTicketController {
     }
 
     @GetMapping("/tickets")
-    public List<RaffleTicketResponseDTO> getTickets(@AuthenticationPrincipal UserModel user){
-        return raffleTicketService.getUserTickets(user.getId());
+    public List<RaffleTicketResponseDTO> getUserTickets(){
+        return raffleTicketService.getUserTickets();
     }
+
     @PostMapping("/create-ticket")
     public ResponseEntity<String> createTicket(@RequestBody RaffleTicketRequestDTO ticketDTO){
         RaffleTicketResponseDTO response = raffleTicketService.createTicket(ticketDTO);

@@ -30,14 +30,22 @@ public class RaffleTicketService {
         this.userRepository = userRepository;
     }
 
-    public List<RaffleTicketResponseDTO> getUserTickets(Long id){
-
-        var result = raffleTicketRepository.findByUser_Id(id);
+    public List<RaffleTicketResponseDTO> getUserTickets(){
+        JWTUserData userData = (JWTUserData) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        var result = raffleTicketRepository.findByUser_Id(userData.userId());
         return result.stream()
                 .map(ticket -> raffleTicketMapper.map(ticket))
                 .toList();
 
     }
+    public List<RaffleTicketResponseDTO> getRafflesTickets(Long raffleId){
+
+        var list = raffleTicketRepository.findByRaffleModel_raffleId(raffleId);
+        return list.stream()
+                .map(ticket -> raffleTicketMapper.map(ticket))
+                .toList();
+    }
+
     public RaffleTicketResponseDTO createTicket(RaffleTicketRequestDTO ticketRequestDTO){
         JWTUserData principal = (JWTUserData) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         var user = userRepository.findById(principal.userId()).orElseThrow(() -> new RuntimeException("User dont found"));

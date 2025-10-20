@@ -16,7 +16,7 @@ public class RaffleTicketMapper {
         raffleTicketDTO.setRAFFLETICKET_ID(raffleTicketModel.getRAFFLETICKET_ID());
         raffleTicketDTO.setUser(raffleTicketModel.getUser());
         raffleTicketDTO.setRaffleDTO(new RaffleResponseDTO(
-                raffleModel.getRAFFLE_ID(),
+                raffleModel.getRaffleId(),
                 raffleModel.getDate(),
                 raffleModel.getPrize()
         ));
