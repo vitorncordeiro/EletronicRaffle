@@ -38,14 +38,12 @@ public class RaffleTicketService {
                 .toList();
 
     }
-    public List<RaffleTicketResponseDTO> getRafflesTickets(Long raffleId){
-
-        var list = raffleTicketRepository.findByRaffleModel_raffleId(raffleId);
-        return list.stream()
-                .map(ticket -> raffleTicketMapper.map(ticket))
-                .toList();
+    public List<RaffleTicketModel> getRafflesTickets(Long raffleId){
+        return raffleTicketRepository.findByRaffleModel_raffleId(raffleId);
     }
-
+    public RaffleTicketModel getTicket(Long id){
+        return raffleTicketRepository.findById(id).orElseThrow(() -> new RuntimeException("Ticket not found"));
+    }
     public RaffleTicketResponseDTO createTicket(RaffleTicketRequestDTO ticketRequestDTO){
         JWTUserData principal = (JWTUserData) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         var user = userRepository.findById(principal.userId()).orElseThrow(() -> new RuntimeException("User dont found"));

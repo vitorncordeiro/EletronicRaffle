@@ -12,6 +12,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
 import java.util.Objects;
+import java.util.Random;
 
 @Service
 public class RaffleService {
@@ -19,6 +20,7 @@ public class RaffleService {
     public RaffleRepository raffleRepository;
     public RaffleMapper raffleMapper;
     public RaffleTicketService raffleTicketService;
+    public Random random = new Random();
 
     public RaffleService(UserRepository userRepository, RaffleMapper raffleMapper, RaffleRepository raffleRepository,
                          RaffleTicketService raffleTicketService) {
@@ -55,8 +57,12 @@ public class RaffleService {
     }
 
     public RaffleTicketModel getDrawWinner(Long raffleId){
-        var ticketQuantity = raffleTicketService.getRafflesTickets(raffleId);
-        // dont forget to add the rest of this method
-        return new RaffleTicketModel();
+        var tickets = raffleTicketService.getRafflesTickets(raffleId);
+        var ticketQuantity = tickets.size();
+        var winnerTicket = tickets.get(random.nextInt(ticketQuantity));
+        var raffle = raffleRepository.findById(raffleId).orElseThrow(() -> new RuntimeException("Raffle not find"));
+        raffle.setWinnerTicket(winnerTicket);
+        raffleRepository.save(raffle);
+        return raffleTicketService.getTicket(winnerTicket.getRAFFLETICKET_ID());
     }
 }

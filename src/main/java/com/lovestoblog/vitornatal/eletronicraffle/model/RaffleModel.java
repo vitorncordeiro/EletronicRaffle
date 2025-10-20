@@ -19,6 +19,10 @@ public class RaffleModel {
     private long raffleId;
     private LocalDate date;
     private String prize;
+    @OneToOne
+    @JsonIgnore
+    private RaffleTicketModel winnerTicket;
+
     @OneToMany(mappedBy = "raffleModel")
     @JsonIgnore
     private Set<RaffleTicketModel> tickets;
