@@ -20,7 +20,7 @@ public class RaffleModel {
     private LocalDate date;
     private String prize;
     @OneToOne
-    @JsonIgnore
+    @JoinColumn(name = "winner_ticket_id")
     private RaffleTicketModel winnerTicket;
 
     @OneToMany(mappedBy = "raffleModel")
