@@ -47,14 +47,12 @@ public class RaffleService {
         raffleRepository.deleteById(raffleId);
 
     }
-    public RaffleModel editRaffle(Long id){
+    public RaffleResponseDTO editRaffle(Long id){
+        RaffleModel raffle = raffleRepository.findById(id).orElseThrow(
+                () -> new RuntimeException("Raffle inexistence"
+        ));
 
-        if(raffleRepository.existsById(id)){
-            raffleRepository.save(raffleRepository.findById(id).orElseThrow(
-                    () -> new RuntimeException("Raffle inexistence")
-            ));
-        }
-        return null;
+        return raffleMapper.map(raffle);
 
     }
 
