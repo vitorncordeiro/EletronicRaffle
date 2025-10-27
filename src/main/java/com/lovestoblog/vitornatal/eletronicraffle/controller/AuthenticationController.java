@@ -10,6 +10,10 @@ import com.lovestoblog.vitornatal.eletronicraffle.mapper.UserMapper;
 import com.lovestoblog.vitornatal.eletronicraffle.model.UserModel;
 import com.lovestoblog.vitornatal.eletronicraffle.repository.UserRepository;
 import com.lovestoblog.vitornatal.eletronicraffle.service.UserService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -24,6 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/auth")
+@Tag(name="Authentication", description="Endpoint for authentication process")
 public class AuthenticationController {
     @Autowired
     private AuthenticationManager authenticationManager;
@@ -38,6 +43,11 @@ public class AuthenticationController {
     @Autowired
     private UserMapper userMapper;
 
+    @Operation(summary="Makes the login authentiaction", description = "Returns a LoginResponseDTO with the JWT Token")
+    @ApiResponses({
+            @ApiResponse(responseCode = "200", description = "Login successfull"),
+            @ApiResponse(responseCode = "403", description = "Username or password incorrectly")
+    })
     @PostMapping("/login")
     public ResponseEntity<LoginResponseDTO> login(@Valid @RequestBody LoginRequest data){
        try {
@@ -53,6 +63,13 @@ public class AuthenticationController {
        }
     }
 
+
+    @Operation(summary="Makes the new account register", description = "Returns a UserResponseDTO with ID, name, cpf, email")
+    @ApiResponses({
+            @ApiResponse(responseCode = "201", description = "Registered successfully"),
+            @ApiResponse(responseCode = "403", description = "Missing fields"),
+            @ApiResponse(responseCode = "400", description = "User already exists")
+    })
     @PostMapping ("/register")
     public ResponseEntity<UserResponseDTO> register(@RequestBody RegisterDTO data){
 
