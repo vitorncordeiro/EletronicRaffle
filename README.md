@@ -17,6 +17,7 @@ It allows creating raffles, registering participants, and performing random draw
 - Java 17+
 - Spring Boot 3+
 - Maven
+- JWT
 
 ## API Endpoints
 
