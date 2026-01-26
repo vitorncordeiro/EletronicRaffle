@@ -11,12 +11,14 @@ It allows creating raffles, registering participants, and performing random draw
 - Register participants  
 - Perform raffle draws  
 - RESTful JSON API  
+- Docker image
 
 ## Technologies
 
 - Java 17+
 - Spring Boot 3+
 - Maven
+- Docker
 - JWT
 
 ## API Endpoints
@@ -109,15 +111,7 @@ http://localhost:8080
 - Validate inputs using Bean Validation  
 - Provide API documentation with Swagger/OpenAPI  
 - Implement global exception handling  
-- Write unit and integration tests  
-
-## Contributing
-
-1. Fork the repository  
-2. Create a feature branch  
-3. Commit your changes  
-4. Push to your branch  
-5. Open a Pull Request  
+- Write unit and integration tests
 
 ## License
 
