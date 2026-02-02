@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  mysql:
+    image: mysql:latest
+    container_name: eraffle
+    environment:
+      MYSQL_DATABASE: eraffle
+      MYSQL_ROOT_PASSWORD: mysql
+    ports:
+      - "3306:3306"
+    restart: always
