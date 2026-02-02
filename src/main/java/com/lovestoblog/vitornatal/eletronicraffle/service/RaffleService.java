@@ -33,6 +33,13 @@ public class RaffleService {
         this.raffleTicketMapper = raffleTicketMapper;
     }
 
+    public List<RaffleResponseDTO> getRaffles(){
+        return raffleRepository.findAll()
+                .stream()
+                .map(model -> raffleMapper.map(model))
+                .toList();
+    }
+
     public RaffleResponseDTO createRaffle(RaffleRequestDTO raffleRequestDTO){
         JWTUserData principal = (JWTUserData) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         var user = userRepository.findById(principal.userId()).orElseThrow(() -> new RuntimeException("User dont found"));

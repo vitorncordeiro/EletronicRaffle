@@ -10,7 +10,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
-@RequestMapping("/raffle")
+import java.util.List;
+
+@RequestMapping("/raffles")
 @RestController
 @Tag(name = "Raffles", description = "Endpoints for managing raffles and drawing winners")
 public class RaffleController {
@@ -21,6 +23,11 @@ public class RaffleController {
         this.raffleService = raffleService;
     }
 
+    @GetMapping
+    public List<RaffleResponseDTO> getRaffles(){
+        return raffleService.getRaffles();
+    }
+
 
     @Operation(summary = "Create a new raffle", description = "Creates a new raffle with the provided details")
     @ApiResponses({
@@ -29,7 +36,7 @@ public class RaffleController {
             @ApiResponse(responseCode = "400", description = "Invalid request data"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @PostMapping("/createRaffle")
+    @PostMapping
     public RaffleResponseDTO createRaffle(@RequestBody RaffleRequestDTO raffleRequestDTO){
         return raffleService.createRaffle(raffleRequestDTO);
     }
@@ -41,7 +48,7 @@ public class RaffleController {
             @ApiResponse(responseCode = "404", description = "Raffle not found"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @DeleteMapping("/deleteRaffle/{id}")
+    @DeleteMapping("/{id}")
     public void deleteRaffle(@PathVariable Long raffleId){
         raffleService.deleteRaffle(raffleId);
     }
@@ -54,7 +61,7 @@ public class RaffleController {
             @ApiResponse(responseCode = "400", description = "Invalid request data"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @PutMapping("/{id}/editRaffle")
+    @PutMapping("/{id}")
     public RaffleResponseDTO editRaffle(@PathVariable Long id){
         return raffleService.editRaffle(id);
     }
