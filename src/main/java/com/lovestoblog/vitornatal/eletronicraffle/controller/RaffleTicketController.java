@@ -29,7 +29,7 @@ public class RaffleTicketController {
             @ApiResponse(responseCode = "403", description = "Unauthorized, user not authenticated"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @GetMapping("/tickets")
+    @GetMapping
     public List<RaffleTicketResponseDTO> getUserTickets(){
         return raffleTicketService.getUserTickets();
     }
@@ -41,7 +41,7 @@ public class RaffleTicketController {
             @ApiResponse(responseCode = "403", description = "Unauthorized, user not authenticated"),
             @ApiResponse(responseCode = "500", description = "Internal server error")
     })
-    @PostMapping("/create-ticket")
+    @PostMapping
     public ResponseEntity<String> createTicket(@RequestBody RaffleTicketRequestDTO ticketDTO){
         RaffleTicketResponseDTO response = raffleTicketService.createTicket(ticketDTO);
         return ResponseEntity.status(HttpStatus.CREATED)
