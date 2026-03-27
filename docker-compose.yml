@@ -5,7 +5,9 @@ services:
     container_name: eraffle
     environment:
       MYSQL_DATABASE: eraffle
-      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_ROOT_PASSWORD: eraffle
+      MYSQL_USER: eraffle
+      MYSQL_PASSWORD: eraffle
     ports:
       - "3306:3306"
     restart: always
